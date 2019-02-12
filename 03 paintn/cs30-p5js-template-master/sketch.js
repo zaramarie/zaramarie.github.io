@@ -9,6 +9,8 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(220);
+  textFont('Georgia', 50);
+  text('Zara', windowWidth/2, 100);
 }
 
 
@@ -26,4 +28,5 @@ function keyTyped() {
 
 function keyPressed() {
   fill(random(255), random(255), random(255));
+  stroke(random(255), random(255), random(255));
 }
