@@ -11,13 +11,12 @@ function setup() {
 }
 
 function rectangles(){
- 
-rect(0, 0, width/2, height/2);
+ rect(0, 0, width/2, height/2);
+rect(width/2, 0, width/2, height/2);
+rect(0, height/2, width/2, height/2);
 rect(width/2, height/2, width/2, height/2);
-rect(width * 2, height * 2, width/2, height/2);
-
 }
-
+function determine 
 function draw() {
   background(255);
   rectangles();
