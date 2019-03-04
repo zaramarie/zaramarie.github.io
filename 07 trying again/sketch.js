@@ -10,14 +10,9 @@ quadrant = 1 // 1 up right, 2 up left
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  
 }
 
-function rectangles(){
- rect(0, 0, width/2, height/2);
-rect(width/2, 0, width/2, height/2);
-rect(0, height/2, width/2, height/2);
-rect(width/2, height/2, width/2, height/2);
-}
 
 function determineQuadrant(){
   if (mouseX < width/2){
@@ -30,9 +25,31 @@ function determineQuadrant(){
   }
 } 
 
+function fills(){
+if (quadrant === 1){
+  fill(0);
+  rect(width/2, 0, width/2, height/2);
+}
+if (quadrant === 2){
+  fill(0);
+  rect(0, 0, width/2, height/2);
+}
+if (quadrant === 3){
+  fill(0);
+  rect(0, height/2, width/2, height/2);
+}
+if (quadrant === 4){
+  fill(0);
+  rect(width/2, height/2, width/2, height/2);
+}
+}
+
+
 function draw() {
   background(255);
-  rectangles();
+  
   determineQuadrant();
   print(quadrant);
+  fills();
+  
 }
