@@ -1,15 +1,40 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// multi coloured grid
+// zara goldney
+// a sad sad day
 
-
+let squareSize = width/26;
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  noLoop();
 }
+
+function chooseFill(){
+  rvalue = int(random(20, 255));
+  gvalue = int(random(0, 20));
+  bvalue = int(random(0, 100));
+  fill(rvalue, gvalue, bvalue);
+}
+
+function mousePressed(){
+
+
+  if(mouseButton === RIGHT){
+    squareSize += 5;
+  }
+  else if (mouseButton === LEFT){
+    squareSize -= 5;
+  }
+  for(let x= 0; x <=width; x += squareSize){
+    for(let y = 0; y <= height; y += squareSize){
+      chooseFill();
+      rect(x,y,squareSize, squareSize);
+    }
+  }
+}
+
 
 function draw() {
   background(220);
+  mousePressed();
 }
+
