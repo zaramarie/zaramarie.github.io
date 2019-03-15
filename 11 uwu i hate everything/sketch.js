@@ -2,7 +2,6 @@
 // zara goldney
 // a sad sad day
 
-let squareSize = width/26;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noLoop();
@@ -11,12 +10,13 @@ function setup() {
 function chooseFill(){
   rvalue = int(random(20, 255));
   gvalue = int(random(0, 20));
-  bvalue = int(random(0, 100));
+  bvalue = int(random(0, 90));
   fill(rvalue, gvalue, bvalue);
 }
 
-function mousePressed(){
 
+function mousePressed(){
+  let squareSize = windowWidth/26;
 
   if(mouseButton === RIGHT){
     squareSize += 5;
