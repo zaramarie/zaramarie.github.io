@@ -8,9 +8,16 @@ let spriteB =[];
 let spriteF = [];
 let spriteL = [];
 let spriteR = [];
+let currentX;
+let currentY;
+let speed = 8;
+let counter = 0;
+direction = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  currentX = width/2;
+  currentY = height/2;
 }
 function preload(){
   for (i = 1; i < 5; i ++){
@@ -27,10 +34,35 @@ function preload(){
   }
 }
 
+function idle(){
+  if (direction === 1){
+    image(spriteF[counter], currentX, currentY, 250, 250);
+  }
+  else if (directon === 2){
+    image(spriteB[counter], currentX, currentY, 250, 250);
+  }
+  if ( frameCount % int(speed) === 0){
+    counter++;
+    if (counter > 3){
+      counter = 0;
+    }
+  }
+}
+
+function keyPressed(){
+if(keyCode === DOWN_ARROW){
+  directon = 1;
+  currentY = currentY + 20;
+ }
+ if(keyCode === UP_ARROW){
+   direction = 2;
+  currentY = currentY - 20;
+ }
+
+}
+
 function draw() {
-  background(220);
+  background(220, 0, 50);
   imageMode(CENTER);
-  print (spriteB);
-  image(spriteF[0], width/2, height/2, 200, 200);
-   
+  idle();
 }
