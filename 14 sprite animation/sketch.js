@@ -1,9 +1,9 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// zara goldney
+// sprite animation
+// march 28th
+// i made egg
+
+
 let spriteB =[];
 let spriteF = [];
 let spriteL = [];
@@ -19,6 +19,7 @@ function setup() {
   currentX = width/2;
   currentY = height/2;
 }
+
 function preload(){
   for (i = 1; i < 5; i ++){
     spriteB.push(loadImage("assets/eggB" +i+ ".png")); 
@@ -38,9 +39,19 @@ function idle(){
   if (direction === 1){
     image(spriteF[counter], currentX, currentY, 250, 250);
   }
-  else if (directon === 2){
+  
+  else if (direction === 2){
     image(spriteB[counter], currentX, currentY, 250, 250);
   }
+  
+  else if (direction === 3){
+    image(spriteL[counter], currentX, currentY, 250, 250);
+  }
+
+  else if (direction === 4){
+    image(spriteR[counter], currentX, currentY, 250, 250);
+  }
+  
   if ( frameCount % int(speed) === 0){
     counter++;
     if (counter > 3){
@@ -50,15 +61,25 @@ function idle(){
 }
 
 function keyPressed(){
-if(keyCode === DOWN_ARROW){
-  directon = 1;
-  currentY = currentY + 20;
+  if(keyCode === DOWN_ARROW){
+    direction = 1;
+    currentY = currentY + 20;
+   }
+  
+   if(keyCode === UP_ARROW){
+     direction = 2;
+    currentY = currentY - 20;
+   }
+ 
+  if(keyCode === LEFT_ARROW){
+    direction = 3;
+   currentX = currentX - 20;
+  }
+ 
+ if(keyCode === RIGHT_ARROW){
+  direction = 4;
+ currentX = currentX + 20;
  }
- if(keyCode === UP_ARROW){
-   direction = 2;
-  currentY = currentY - 20;
- }
-
 }
 
 function draw() {
