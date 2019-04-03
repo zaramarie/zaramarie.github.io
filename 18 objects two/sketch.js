@@ -16,7 +16,7 @@ function setup(){
 }
 
 function draw(){
-  background(220);
+ 
   for (let currentBall of ballObjects){
     
     currentBall.move();
