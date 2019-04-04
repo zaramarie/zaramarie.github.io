@@ -15,15 +15,5 @@ function ellipses(){
    //creates circles in 40px intervals
   for (i = 300; i > 40; i = i - 40){
     ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
-    ellipse(200, 200, i, i);
   }
-  
 }
