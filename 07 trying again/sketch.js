@@ -13,6 +13,15 @@ function setup() {
   
 }
 
+function makingQuadrants(){
+  fill(255);
+  strokeWeight(4);
+  stroke('#fae');
+  rect(width/2, 0, width/2, height/2);
+  rect(0, 0, width/2, height/2);
+  rect(0, height/2, width/2, height/2);
+  rect(width/2, height/2, width/2, height/2);
+}
 
 function determineQuadrant(){
   if (mouseX < width/2){
@@ -47,7 +56,7 @@ if (quadrant === 4){
 
 function draw() {
   background(255);
-  
+  makingQuadrants();
   determineQuadrant();
   print(quadrant);
   fills();

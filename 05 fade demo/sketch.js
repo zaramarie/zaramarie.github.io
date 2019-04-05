@@ -34,7 +34,7 @@ function mouseDistance( x1, y1, x2, y2){
 }
 
 function mousePressed(){
-  if buttonOver {
+  if (buttonOver) {
   fadeIn = !fade;
   }
 }
