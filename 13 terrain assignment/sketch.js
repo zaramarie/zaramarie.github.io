@@ -27,6 +27,8 @@ function drawTerrain(){
 }
 
 function draw() {
-  background(0);
+  let x = 1;
+  background(x/2 % 300, 280, 330);
   drawTerrain();
+  
 }
