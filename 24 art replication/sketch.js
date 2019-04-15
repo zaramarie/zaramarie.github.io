@@ -1,26 +1,33 @@
-// Project Title
-// Your Name
-// Date
+// art replication
+// zara goldney
+// april 15
 //
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// what up my name is zara im 18 and never learned how to use lines
 
+
+let x = random(width);
+let y = random(height);
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
-  fill(240);
+  fill(255);
   noStroke();
   ellipse(width/2, height/2, 500, 500);
   rectangles();
 }
 
 function rectangles(){
+  let x = random(windowHeight);
+  let y = random(windowHeight);
   
-  for ( let i = 0; i < 300; i++){
+  for ( let i = 0; i < 1000; i++){
     fill(0);
-    rect(random(width/2 + 225, width/2 -225), random(height/2 + 225, height/2 -225) , random(1, 20), random(1, 20));
-  }
-
-  
+      if ((dist(width/2, height/2, x, y) < 250)){
+      
+       rect(x, y, random(1, 20), random(1, 20));
+      }
+    x = random(width);
+    y = random(height);
+  } 
 }
