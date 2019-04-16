@@ -21,7 +21,7 @@ function rectangles(){
   let x = random(windowHeight);
   let y = random(windowHeight);
   
-  for ( let i = 0; i < 1000; i++){
+  for ( let i = 0; i < 1500; i++){
     fill(0);
       if ((dist(width/2, height/2, x, y) < 250)){
       
