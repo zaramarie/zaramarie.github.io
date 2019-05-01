@@ -1,9 +1,6 @@
-// Project Title
-// Your Name
-// Date
-//
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// generative art
+//zara goldney
+//april 30th
 
 
 function setup() {
@@ -40,7 +37,7 @@ function draw() {
   
   
 
-
+//larger ellipses
   for (let i = 2000; i < 2300; i += 6){
     stroke(255 -i/10, 220 -i/10, 240 -i/10);
     ellipse(width/2, height/2.00, i);
@@ -66,7 +63,7 @@ function draw() {
     ellipse(width/2, height/2.00, i);
   }
 
-
+//smaller ellipses
   
 }
 
