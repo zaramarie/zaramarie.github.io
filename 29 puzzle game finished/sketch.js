@@ -1,6 +1,10 @@
 // grid demo
 // zara 
 // april 29
+// i used your starter code/what we did in class
+//my functions are on the bottom
+
+
 const NUM_ROWS = 4;
 const NUM_COLS = 5;
 let gridData = [[0, 255, 0, 255, 0],
@@ -22,23 +26,6 @@ function draw() {
   drawGrid();
   determineActiveSquare();
   checkWin();
-}
-
-function randomGrid(){
-  //makes gridData random
-  for(let y = 0; y < NUM_ROWS; y++){
-    for(let x = 0; x < NUM_COLS; x ++){
-      let blackOrWhite = random(4);
-
-      if (blackOrWhite < 2){
-        gridData[y][x] = 0;
-      }
-
-      else{
-        gridData[y][x] = 255;
-      }
-    }
-  }
 }
 
 function drawGrid(){
@@ -64,6 +51,7 @@ function flip(col, row){
   if (col >= 0 && col< NUM_COLS && row >= 0 && row < NUM_ROWS) {
     if (gridData[row][col] === 0){
       gridData[row][col] = 255;
+
     }
     else{
       gridData[row][col] = 0;
@@ -87,6 +75,8 @@ function flip(col, row){
   }
  }
 
+
+ //winStatement, checkWin and randomGrid are functions I made
  function winStatement(){
     fill(220, 40, 200);
     textSize(width/8);
@@ -107,3 +97,21 @@ function flip(col, row){
     winStatement();
   }
  }
+
+ function randomGrid(){
+  //makes gridData random
+  for(let y = 0; y < NUM_ROWS; y++){
+    for(let x = 0; x < NUM_COLS; x ++){
+      let blackOrWhite = random(4);
+
+      if (blackOrWhite < 2){
+        gridData[y][x] = 0;
+      }
+
+      else{
+        gridData[y][x] = 255;
+      }
+    }
+  }
+}
+
