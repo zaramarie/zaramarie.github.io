@@ -5,12 +5,20 @@ let ghostSong;
 let helloWorld;
 let amplitude;
 let clickCount = 0;
+ghost =[];
+let speed = 8;
+let counter = 0;
 
 
 function preload() {
   soundFormats('mp3', 'ogg');
   ghostSong = loadSound('assets/ghost choir.mp3');
   helloWorld = loadSound('assets/hello world.mp3');
+
+
+  for (i = 0; i < 4; i ++){
+    ghost.push(loadImage("assets/ghost/ghost" +i+ ".png")); 
+  }
 }
 
 function setup() {
@@ -20,7 +28,10 @@ function setup() {
 
 
 function draw() {
-
+  if(clickCount % 2 > 0){
+    ghostAnimation();
+    
+  }
 }
 
 function backgroundColor(){
@@ -40,6 +51,7 @@ function mouseClicked(){
     ghostSong.play();
     amplitude = new p5.Amplitude();
     backgroundColor();
+    
   }
   
   else if(clickCount %2 === 0){
@@ -48,4 +60,20 @@ function mouseClicked(){
     amplitude = new p5.Amplitude();
     backgroundColor();
   }
+}
+
+
+
+function ghostAnimation(){
+
+  image(ghost[counter], width/2, height/2, 200, 300);
+ 
+  
+  if ( frameCount % int(speed) === 0){
+    counter++;
+    if (counter > 3){
+      counter = 0;
+    }
+  }
+  
 }
