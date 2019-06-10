@@ -8,16 +8,32 @@ let clickCount = 0;
 ghost =[];
 let speed = 8;
 let counter = 0;
-
+let trees = [];
+let mountains = [];
+let colorMod;
+let level;
+let xpos = [];
+let ypos = [];
 
 function preload() {
+  //getting the songs
   soundFormats('mp3', 'ogg');
   ghostSong = loadSound('assets/ghost choir.mp3');
   helloWorld = loadSound('assets/hello world.mp3');
 
-
+  //getting the ghost sprite
   for (i = 0; i < 4; i ++){
     ghost.push(loadImage("assets/ghost/ghost" +i+ ".png")); 
+  }
+
+  //getting trees
+  for (i = 0; i < 4; i ++){
+    trees.push(loadImage("assets/trees/tree" +i+ ".png")); 
+  }
+
+  //getting mountains
+  for (i = 0; i < 5; i ++){
+    mountains.push(loadImage("assets/mountains/mountain" +i+ ".png")); 
   }
 }
 
@@ -28,44 +44,59 @@ function setup() {
 
 
 function draw() {
+
+  //ghost song playing
   if(clickCount % 2 > 0){
+    ghostBackgroundColor();
     ghostAnimation();
-    
-  }
+    stars();
+    ghostGround();
+   
+    }
 }
 
-function backgroundColor(){
-  let level = amplitude.getLevel();
-  let colorMod = level * 100;
-  print(level);
-  background(100 + colorMod, 100 + colorMod, 255 - colorMod);
+function ghostBackgroundColor(){
+  //making a background
+  level = amplitude.getLevel();
+  colorMod = level * 100;
+  background(10 + colorMod, 10 + colorMod, 50 - colorMod);
 }
 
 function mouseClicked(){
+  //song control
+
   clickCount += 1;
   ghostSong.stop();
   helloWorld.stop();
+
+   //click to start song one
+  //song one is ghost song
 
   if(clickCount % 2 > 0){
     ghostSong.setVolume(1.0);
     ghostSong.play();
     amplitude = new p5.Amplitude();
-    backgroundColor();
+    starsPos();
     
   }
   
+  //click again to start song two
+  //song two is hello world
   else if(clickCount %2 === 0){
     helloWorld.setVolume(1.0);
     helloWorld.play();
     amplitude = new p5.Amplitude();
-    backgroundColor();
+    
   }
+
+  //clicking again will return to song one
+
 }
 
 
 
 function ghostAnimation(){
-
+  //running through the ghost pngs to make animation
   image(ghost[counter], width/2, height/2, 200, 300);
  
   
@@ -76,4 +107,30 @@ function ghostAnimation(){
     }
   }
   
+}
+
+function ghostGround(){
+  //makes ground for ghost scene
+  fill(1, colorMod *2, 5);
+  rectMode(CENTER);
+  noStroke();
+  rect(0, height, width*2, height/5);
+}
+
+function stars(){
+  //draws stars
+  for(let i = 20; i > 0; i--){
+    let sizeMod = level * 50;
+    noStroke();
+    fill(200 + colorMod, 200 + colorMod, 100 + colorMod);
+    ellipse(xpos[i], ypos[i], sizeMod);
+ }
+}
+
+function starsPos(){
+  //created constant star positions
+  for(let i = 20; i > 0; i--){ 
+    xpos.push(random(width));
+    ypos.push(random( height));
+   }
 }
