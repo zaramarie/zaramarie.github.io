@@ -6,7 +6,7 @@ let helloWorld;
 let amplitude;
 let clickCount = 0; 
 ghost =[];
-let speed = 8;
+let speed = 8; //how many frames go by before moving
 let counter = 0;
 let trees = [];
 let mountains = [];
@@ -16,8 +16,16 @@ let xpos = [];  //star coordinates
 let ypos = [];
 const NUM_STARS = 20;   //the number of stars being made
 let song = 0;  // shows what song is playing 1 = ghost choir, 2 = hello world
-let treeStart; //holds tree x pos 
-
+let treeStart = []; //holds tree x positions 
+let computer = [];
+let computerSpeed = 9;//how many frames go by before moving
+let NUM_TREES = 12; //was going to be a constant but then i needed to change it, dont mind caps pls 
+const treeSpeed = 60;//how many frames go by before moving
+let treeVar = []; //holds an array of random tree variations
+let NUM_MOUNTAINS = 7; //was going to be a constant but i needed to change it, dont mind caps pls
+const mountainSpeed = 90;//how many frames go by before moving
+let mountainVar = []; //holds an array of random tree variations
+let mountainStart = [];
 
 
 
@@ -33,6 +41,10 @@ function preload() {
     ghost.push(loadImage("assets/ghost/ghost" +i+ ".png")); 
   }
 
+   //getting the computer sprite
+   for (i = 0; i < 4; i ++){
+    computer.push(loadImage("assets/computer/computer" +i+ ".png")); 
+  }
   //getting trees
   for (i = 0; i < 4; i ++){
     trees.push(loadImage("assets/trees/tree" +i+ ".png")); 
@@ -47,8 +59,16 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(0);
-  treeStart = width;
- 
+  for(let i = 0; i < NUM_TREES; i ++){
+    treeStart.push(random(width));
+    treeVar.push(random(4));
+  }
+
+  for(let i = 0; i < NUM_MOUNTAINS; i ++){
+    mountainStart.push(random(width));
+    mountainVar.push(random(4));
+  }
+  
 }
 
 
@@ -67,7 +87,9 @@ function draw() {
   //hello world playing
   if(song === 2){
     computerBackgroundColor();
+    mountainMoving();
     computerGround();
+    computerAnimation();
     
     }
 }
@@ -101,6 +123,7 @@ function mouseClicked(){
 
     helloWorld.setVolume(1.0);
     helloWorld.play();
+
     amplitude = new p5.Amplitude();
     
   }
@@ -147,6 +170,7 @@ function starsPos(){
 
 function ghostAnimation(){
   //running through the ghost pngs to make animation
+  imageMode(CORNER);
   image(ghost[counter], width/2 - 125, height/2, 200, 300);
  
   
@@ -159,6 +183,20 @@ function ghostAnimation(){
   
 }
 
+function computerAnimation(){
+  //running through the ghost pngs to make animation
+  imageMode(CORNER);
+  image(computer[counter], width/2 - 225, height/2, 400, 500);
+ 
+  
+  if ( frameCount % int(computerSpeed) === 0){
+    counter++;
+    if (counter > 3){
+      counter = 0;
+    }
+  }
+  
+}
 
 
 function ghostGround(){
@@ -170,6 +208,7 @@ function ghostGround(){
 }
 
 function computerGround(){
+ 
   //makes ground for ghost scene
   fill(50 + colorMod, colorMod + 160, 120 + colorMod);
   rectMode(CENTER);
@@ -178,11 +217,42 @@ function computerGround(){
 }
 
 function treeMoving(){
-  image(trees[0], treeStart, height/1.9, 200, 300);
+  //tree animation
+  imageMode(CENTER);
+  //a set number of start trees
+  for(let i = 0; i < NUM_TREES; i ++){
+    image(trees[int(treeVar[i])], treeStart[i], height - height/5, 200, 500);
 
-  if ( frameCount % int(speed) === 0){
-    treeStart--;
-    
+    if ( frameCount % int(treeSpeed) === 0){
+      treeStart[i]--;
+      
+    }
+  }
+  //continusly adds more trees
+  if (frameCount % 2000 === 0){
+    NUM_TREES++;
+    treeVar.push(random(4));
+    treeStart.push(width + random(200));
+  }
+}
+
+function mountainMoving(){
+  //tree animation
+  imageMode(CENTER);
+  //start mountains
+  for(let i = 0; i < NUM_MOUNTAINS; i ++){
+    image(mountains[int(mountainVar[i])], mountainStart[i], height - height/5, 500, 300);
+
+    if ( frameCount % int(mountainSpeed) === 0){
+      mountainStart[i]--;
+      
+    }
+  }
+  //continously adding more mountains
+  if (frameCount % 4000 === 0){
+    NUM_MOUNTAINS++;
+    mountainVar.push(random(4));
+    mountainStart.push(width +random(600));
   }
 
 }
